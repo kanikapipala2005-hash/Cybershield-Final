@@ -1,0 +1,5 @@
+# supabase project config
+
+[functions.admin-actions]
+verify_jwt = false
+entrypoint = "./functions/admin-actions/index.ts"
