@@ -17,7 +17,7 @@ CyberShield is a modern, responsive cybersecurity SaaS landing page and platform
 
 This project was built as part of my BTech CSE portfolio to demonstrate frontend development, UI/UX, and product thinking in cybersecurity domain.
 
-**Author:** Kanika Pipala [@kanikapipala2005]
+**Author:** Kanika  [@kanikapipala2005]
 
 ## ✨ Features
 
