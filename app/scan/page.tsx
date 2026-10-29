@@ -1,3 +1,40 @@
+"use client"
+import { useState, useEffect } from "react"
+
+// Add this state
+const [history, setHistory] = useState<any[]>([])
+
+// Load saved scans on page open
+useEffect(() => {
+  const saved = localStorage.getItem("cybershield_history")
+  if (saved) setHistory(JSON.parse(saved))
+}, [])
+
+// In your handleScan function, AFTER you get result:
+const saveResult = (url: string, result: any) => {
+  const newScan = {
+    url,
+    risk: result.riskScore,
+    status: result.status, // SAFE / DANGEROUS
+    threat: result.threat,
+    time: new Date().toLocaleString(),
+    id: Date.now()
+  }
+  const updated = [newScan, ...history].slice(0, 20) // keep last 20
+  setHistory(updated)
+  localStorage.setItem("cybershield_history", JSON.stringify(updated))
+  
+  // Update counters
+  localStorage.setItem("scans_performed", String(Number(localStorage.getItem("scans_performed") || 0) + 1))
+}
+
+// For showing in UI:
+{history.map((item) => (
+  <div key={item.id} className="flex justify-between bg-[#131a2e] p-3 rounded mb-2">
+    <span className="text-sm truncate">{item.url}</span>
+    <span className={item.status === 'DANGEROUS' ? 'text-red-400' : 'text-green-400'}>{item.risk} {item.status}</span>
+  </div>
+))}
 'use client';
 
 export const dynamic = 'force-dynamic';
