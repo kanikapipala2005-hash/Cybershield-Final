@@ -1,3 +1,7 @@
+await fetch('/api/history', {
+  method: 'POST',
+  body: JSON.stringify({ url, riskScore: result.riskScore, status: result.status })
+})
 import { NextRequest, NextResponse } from 'next/server';
 
 // LAYER 1: Lexical Analysis
